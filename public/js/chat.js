@@ -22,7 +22,7 @@ socket.on('connect', function () {
       alert(err);
       window.location.href = '/';
     } else {
-      console.log('ready to join chat');
+      // console.log('ready to join chat');
     }
   });
 });
@@ -68,7 +68,6 @@ socket.on('newLocationMessage', function (message) {
   // a.attr('href', message.url);
   // li.append(a);
   // $('ol#messages').append(li);
-
 
 });
 

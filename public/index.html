@@ -10,7 +10,7 @@
   <body>
     <div class="centered-form">
       <div class="centered-form__form">
-        <form action="/chat.html">
+        <form id="enter-chat" action="/chat.html">
           <div class="form-field">
             <h3>Join a Chat</h3>
           </div>
@@ -23,10 +23,22 @@
             <input type="text" name="room">
           </div>
           <div class="form-field">
+            <select name="active-room" id="select-room">
+              <option disabled>No active rooms</option>
+            </select>
+          </div>
+          <div class="form-field">
             <button>Join</button>
           </div>
         </form>
       </div>
     </div>
+    <script id="room-list" type="text/template">
+      <option value="{{ room_value }}">{{ room_name }}</option>
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/jquery-3.3.1.min.js"></script>
+    <script src="/js/libs/mustache.min.js"></script>
+    <script src="/js/index.js"></script>
   </body>
 </html>

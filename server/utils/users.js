@@ -27,6 +27,10 @@ class Users {
     return roomUserNameList;
   }
 
+  getRoomList () {
+    return (this.userList.map(user => user.room)).filter((value, index, self) => self.indexOf(value) === index);
+  }
+
 }
 
 module.exports = {Users};
