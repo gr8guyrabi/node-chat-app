@@ -10,14 +10,29 @@ function scrollToBottom() {
   let scrollHeight = messages.prop('scrollHeight');
   let newMessageHeight = newMessage.innerHeight();
   let prevMessageHeight = newMessage.prev().innerHeight();
-  console.log({'change': clientHeight + scrollTopHeight + newMessageHeight + prevMessageHeight, scrollHeight})
   if( clientHeight + scrollTopHeight + newMessageHeight + prevMessageHeight >= scrollHeight ) {
     messages.scrollTop(scrollHeight);
   }
 }
 
 socket.on('connect', function () {
-  console.log('Connected to the server.');
+  const params = jQuery.deparam(window.location.search);
+  socket.emit('join', params, function (err) {
+    if(err) {
+      alert(err);
+      window.location.href = '/';
+    } else {
+      console.log('ready to join chat');
+    }
+  });
+});
+
+socket.on('updateUserList', function (users) {
+  let ol = jQuery('<ol></ol>');
+  users.forEach(function (user) {
+    ol.append(jQuery('<li></li>').text(user));
+  });
+  jQuery('#users').html(ol);
 });
 
 socket.on('newMessage', function (message) {
